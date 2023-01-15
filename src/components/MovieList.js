@@ -2,7 +2,6 @@ import MediaCard from "./MovieCard";
 import { Movies } from "./data.js";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { useState } from "react";
-// import { Movies } from "./data.json";
 const Add = () => {
   const [data, setData] = useState({
     title: "",
@@ -12,7 +11,6 @@ const Add = () => {
   });
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Do something with the form data (e.g. send to a server)
     const newMovie = {
       id: Movies.length + 1,
       title: data.title,
@@ -20,7 +18,13 @@ const Add = () => {
       posterUrl: data.posterUrl,
       rating: data.rating,
     };
-    // Add the new object to the movies array
+    let storedMovies = JSON.parse(localStorage.getItem("movies")) || [];
+    // Add new movie to existing movies
+    let updatedMovies = [...storedMovies, newMovie];
+    // set the movies state variable with the updated movies
+    setData(updatedMovies);
+    // Store the updated movies in local storage
+    localStorage.setItem("movies", JSON.stringify(updatedMovies));
     Movies.push(newMovie);
     console.log(event.target.name, event.target.value);
     console.log(newMovie, "ive updated", Movies);
@@ -29,6 +33,7 @@ const Add = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   console.log(data);
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -63,26 +68,94 @@ const Add = () => {
 };
 
 const MovieList = () => {
+  let storedMovies = JSON.parse(localStorage.getItem("movies"));
+  // Set the initial state of the movies variable with the stored movies
+  const [movies, setMovies] = useState(storedMovies || []);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [minRating, setMinRating] = useState(0);
+
+  let filteredMovies = [];
+
+  searchTerm || minRating
+    ? (filteredMovies = Movies.filter((Movie) => {
+        return (
+          Movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          Movie.rating >= minRating
+        );
+      }))
+    : (filteredMovies = Movies);
   console.log("hello");
   return (
     <div>
+      <div>
+        <form>
+          <input
+            type="text"
+            placeholder="Search by title"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Minimum rating"
+            value={minRating}
+            onChange={(e) => setMinRating(e.target.value)}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <Add
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      ></Add>
       <Grid
         container
         direction="row"
-        justifyContent="space-evenly"
+        justifyContent="space-around"
         alignItems="center"
+        sx={{ m: 10 }}
       >
-        {Movies.map(({ title, description, posterUrl, rating }, key) => (
-          <MediaCard
+        {filteredMovies.map(
+          ({ title, description, posterUrl, rating }, key) => (
+            <Grid
+              key={key}
+              direction="row"
+              justifyContent="space-around"
+              alignItems="center"
+              sx={{ m: 10 }}
+            >
+              <MediaCard
+                key={key}
+                title={title}
+                description={description}
+                posterUrl={posterUrl}
+                rating={Number(rating)}
+              ></MediaCard>
+            </Grid>
+          )
+        )}
+        {movies.map(({ title, description, posterUrl, rating }, key) => (
+          <Grid
             key={key}
-            title={title}
-            description={description}
-            posterUrl={posterUrl}
-            rating={rating}
-          ></MediaCard>
+            direction="row"
+            justifyContent="space-around"
+            alignItems="center"
+            sx={{ m: 10 }}
+          >
+            <MediaCard
+              key={key}
+              title={title}
+              description={description}
+              posterUrl={posterUrl}
+              rating={Number(rating)}
+            ></MediaCard>
+          </Grid>
         ))}
       </Grid>
-      <Add></Add>
     </div>
   );
 };

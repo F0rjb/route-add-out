@@ -5,7 +5,7 @@ export var Movies = [
     description:
       "Catch Me If You Can is a 2002 American biographical crime comedy-drama film directed and produced by Steven Spielberg and starring Leonardo DiCaprio and Tom Hanks",
     posterUrl: "https://i.ytimg.com/vi/jE7-h7mwfPs/movieposter.jpg",
-    rating: 3,
+    rating: 5,
   },
   {
     id: 2,
