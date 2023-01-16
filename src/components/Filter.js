@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Rating } from "@mui/material";
+import { Rating, TextField } from "@mui/material";
 
 const Filter = ({ minrating, searchterm }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,9 +23,10 @@ const Filter = ({ minrating, searchterm }) => {
   return (
     <>
       <form>
-        <input
-          type="text"
-          placeholder="Search by title"
+        <TextField
+          id="outlined-name"
+          label="Name"
+          variant="filled"
           value={searchTerm}
           onChange={handleSearchChange}
         />

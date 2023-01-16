@@ -3,6 +3,7 @@ import { Movies } from "./data.js";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { useState } from "react";
 import Filter from "./Filter";
+
 const Add = () => {
   const [data, setData] = useState({
     title: "",
@@ -20,12 +21,8 @@ const Add = () => {
       rating: data.rating,
     };
     let storedMovies = JSON.parse(localStorage.getItem("movies")) || [];
-    // Add new movie to existing movies
     let updatedMovies = [...storedMovies, newMovie];
-    // set the movies state variable with the updated movies
     setData(updatedMovies);
-    // Store the updated movies in local storage
-    // call the setMovies function here to update the state of the movies variable
 
     localStorage.setItem("movies", JSON.stringify(updatedMovies));
     Movies.push(newMovie);
@@ -118,7 +115,7 @@ const MovieList = () => {
         direction="row"
         justifyContent="space-around"
         alignItems="center"
-        sx={{ m: 10 }}
+        sx={{ marginTop: 10 }}
       >
         {filteredMovies.map(
           ({ title, description, posterUrl, rating }, key) => (
@@ -127,7 +124,7 @@ const MovieList = () => {
               direction="row"
               justifyContent="space-around"
               alignItems="center"
-              sx={{ m: 10 }}
+              sx={{ marginBottom: 10 }}
             >
               <MediaCard
                 key={key}
