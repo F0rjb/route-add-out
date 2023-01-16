@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { useState } from "react";
+import { Rating } from "@mui/material";
 
-const Filter = () => {
+const Filter = ({ minrating, searchterm }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [minRating, setMinRating] = useState(0);
 
@@ -11,6 +13,13 @@ const Filter = () => {
   const handleRatingChange = (e) => {
     setMinRating(e.target.value);
   };
+  useEffect(() => {
+    minrating(minRating);
+  }, [minRating, minrating]);
+  useEffect(() => {
+    searchterm(searchTerm);
+  }, [searchTerm, searchterm]);
+
   return (
     <>
       <form>
@@ -20,14 +29,15 @@ const Filter = () => {
           value={searchTerm}
           onChange={handleSearchChange}
         />
-        <input
-          type="number"
-          placeholder="Minimum rating"
+        <Rating
+          sx={{ alignItems: "center" }}
+          name="simple-controlled"
           value={minRating}
           onChange={handleRatingChange}
         />
+
         <button type="submit">Clear filter</button>
-      </form>
+      </form>{" "}
     </>
   );
 };

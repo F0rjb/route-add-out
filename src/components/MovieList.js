@@ -2,6 +2,7 @@ import MediaCard from "./MovieCard";
 import { Movies } from "./data.js";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { useState } from "react";
+import Filter from "./Filter";
 const Add = () => {
   const [data, setData] = useState({
     title: "",
@@ -74,6 +75,8 @@ const MovieList = () => {
   const [movies, setMovies] = useState(storedMovies || []);
   const [searchTerm, setSearchTerm] = useState("");
   const [minRating, setMinRating] = useState(0);
+  const handleRating = (data) => setMinRating(data);
+  const handleSearchTerm = (data) => setSearchTerm(data);
 
   let filteredMovies = [];
   let filteredMoviesLoc = [];
@@ -100,23 +103,8 @@ const MovieList = () => {
   console.log("filtered", filteredMovies);
   return (
     <div>
-      <div>
-        <form>
-          <input
-            type="text"
-            placeholder="Search by title"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Minimum rating"
-            value={minRating}
-            onChange={(e) => setMinRating(e.target.value)}
-          />
-          <button type="submit">Clear filter</button>
-        </form>
-      </div>
+      <Filter minrating={handleRating} searchterm={handleSearchTerm}></Filter>
+
       <br />
       <Add
         style={{

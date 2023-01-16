@@ -11,11 +11,11 @@ import Rating from "@mui/material/Rating";
 export default function MediaCard(props) {
   console.log("hello card");
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, borderRadius: 7 }}>
       <CardMedia
         sx={{ minWidth: 345, height: 400 }}
         image={props.posterUrl}
-        title="green iguana"
+        title={props.title}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
