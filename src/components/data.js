@@ -25,4 +25,49 @@ export var Movies = [
       "https://upload.wikimedia.org/wikipedia/en/6/6f/FirstManCover.jpg",
     rating: 2,
   },
+
+  {
+    id: 1,
+    title: "The Shawshank Redemption",
+    description:
+      "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+    posterUrl: "https://flxt.tmsimg.com/assets/p15987_p_v8_ai.jpg",
+    rating: 5,
+  },
+  {
+    id: 2,
+    title: "The Godfather",
+    description:
+      "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+    posterUrl:
+      "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+    rating: 5,
+  },
+  {
+    id: 3,
+    title: "The Dark Knight",
+    description:
+      "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
+    posterUrl:
+      "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_SX300.jpg",
+    rating: 5,
+  },
+  {
+    id: 4,
+    title: "The Lord of the Rings: The Return of the King",
+    description:
+      "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
+    posterUrl:
+      "https://m.media-amazon.com/images/M/MV5BNzA5ZDNlZWMtM2NhNS00NDJjLTk4NDItYTRmY2EwMWZlMTY3XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+    rating: 4,
+  },
+  {
+    id: 5,
+    title: "Pulp Fiction",
+    description:
+      "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+    posterUrl:
+      "https://hollywoodlife.com/wp-content/uploads/2022/03/Pulp-Fiction-Then-And-Now-2-1.jpg",
+    rating: 5,
+  },
 ];

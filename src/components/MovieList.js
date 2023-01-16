@@ -69,22 +69,49 @@ const Add = () => {
 
 const MovieList = () => {
   let storedMovies = JSON.parse(localStorage.getItem("movies"));
-  // Set the initial state of the movies variable with the stored movies
   const [movies, setMovies] = useState(storedMovies || []);
   const [searchTerm, setSearchTerm] = useState("");
   const [minRating, setMinRating] = useState(0);
 
   let filteredMovies = [];
+  let filteredMoviesLoc = [];
+  searchTerm || minRating
+    ? (filteredMoviesLoc = movies.filter((movies) => {
+        return (
+          movies.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+          movies.rating >= minRating
+        );
+      }))
+    : // (
+      //   (filteredMoviesLoc = movies.filter((movies) => {
+      //     return (
+      //       movies.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      //       movies.rating >= minRating
+      //     );
+      //   }))
+      // )
+      (filteredMoviesLoc = movies);
 
   searchTerm || minRating
     ? (filteredMovies = Movies.filter((Movie) => {
         return (
-          Movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          Movie.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
           Movie.rating >= minRating
         );
       }))
-    : (filteredMovies = Movies);
-  console.log("hello");
+    : // (
+      //   (filteredMoviesLoc = movies.filter((movies) => {
+      //     return (
+      //       movies.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      //       movies.rating >= minRating
+      //     );
+      //   }))
+      // )
+      (filteredMovies = Movies);
+  if (filteredMovies === []) {
+    alert("Nothing to find here ");
+  }
+  console.log("filtered", filteredMovies);
   return (
     <div>
       <div>
@@ -138,23 +165,25 @@ const MovieList = () => {
             </Grid>
           )
         )}
-        {movies.map(({ title, description, posterUrl, rating }, key) => (
-          <Grid
-            key={key}
-            direction="row"
-            justifyContent="space-around"
-            alignItems="center"
-            sx={{ m: 10 }}
-          >
-            <MediaCard
+        {filteredMoviesLoc.map(
+          ({ title, description, posterUrl, rating }, key) => (
+            <Grid
               key={key}
-              title={title}
-              description={description}
-              posterUrl={posterUrl}
-              rating={Number(rating)}
-            ></MediaCard>
-          </Grid>
-        ))}
+              direction="row"
+              justifyContent="space-around"
+              alignItems="center"
+              sx={{ m: 10 }}
+            >
+              <MediaCard
+                key={key}
+                title={title}
+                description={description}
+                posterUrl={posterUrl}
+                rating={Number(rating)}
+              ></MediaCard>
+            </Grid>
+          )
+        )}
       </Grid>
     </div>
   );
