@@ -130,7 +130,6 @@ const MovieList = () => {
             value={minRating}
             onChange={(e) => setMinRating(e.target.value)}
           />
-          <button type="submit">Submit</button>
         </form>
       </div>
 
