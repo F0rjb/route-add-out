@@ -24,6 +24,8 @@ const Add = () => {
     // set the movies state variable with the updated movies
     setData(updatedMovies);
     // Store the updated movies in local storage
+    // call the setMovies function here to update the state of the movies variable
+
     localStorage.setItem("movies", JSON.stringify(updatedMovies));
     Movies.push(newMovie);
     console.log(event.target.name, event.target.value);

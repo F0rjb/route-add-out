@@ -13,7 +13,7 @@ export default function MediaCard(props) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
-        sx={{ height: 400 }}
+        sx={{ minWidth: 345, height: 400 }}
         image={props.posterUrl}
         title="green iguana"
       />
