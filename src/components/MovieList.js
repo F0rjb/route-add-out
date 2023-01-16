@@ -84,15 +84,7 @@ const MovieList = () => {
           movies.rating >= minRating
         );
       }))
-    : // (
-      //   (filteredMoviesLoc = movies.filter((movies) => {
-      //     return (
-      //       movies.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      //       movies.rating >= minRating
-      //     );
-      //   }))
-      // )
-      (filteredMoviesLoc = movies);
+    : (filteredMoviesLoc = movies);
 
   searchTerm || minRating
     ? (filteredMovies = Movies.filter((Movie) => {
@@ -101,15 +93,7 @@ const MovieList = () => {
           Movie.rating >= minRating
         );
       }))
-    : // (
-      //   (filteredMoviesLoc = movies.filter((movies) => {
-      //     return (
-      //       movies.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      //       movies.rating >= minRating
-      //     );
-      //   }))
-      // )
-      (filteredMovies = Movies);
+    : (filteredMovies = Movies);
   if (filteredMovies === []) {
     alert("Nothing to find here ");
   }
@@ -133,7 +117,7 @@ const MovieList = () => {
           <button type="submit">Clear filter</button>
         </form>
       </div>
-
+      <br />
       <Add
         style={{
           display: "flex",
