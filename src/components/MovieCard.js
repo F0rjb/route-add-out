@@ -9,7 +9,7 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 
 export default function MediaCard(props) {
-  console.log("hello card");
+  console.log(props.title, props.posterUrl);
   return (
     <Card sx={{ maxWidth: 345, borderRadius: 7 }}>
       <CardMedia
@@ -30,15 +30,8 @@ export default function MediaCard(props) {
             borderRadius: 2,
           }}
         >
-          {/* <Rating
-            name="simple-controlled"
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          /> */}
           <Typography component="legend">Rating</Typography>
-          <Rating name="read-only" value={props.rating} readOnly />
+          <Rating name="read-only" value={Number(props.rating)} readOnly />
         </Box>
       </CardContent>
       <CardActions>

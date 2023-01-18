@@ -7,10 +7,13 @@ const Filter = ({ minrating, searchterm }) => {
   const [minRating, setMinRating] = useState(0);
 
   const handleSearchChange = (e) => {
+    e.preventDefault();
+
     setSearchTerm(e.target.value);
   };
 
   const handleRatingChange = (e) => {
+    e.preventDefault();
     setMinRating(e.target.value);
   };
   useEffect(() => {
