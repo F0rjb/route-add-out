@@ -1,10 +1,10 @@
 import MediaCard from "./MovieCard";
 import { Movies } from "./data.js";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Filter from "./Filter";
 
-const Add = () => {
+const Add = ({ handleNewMovie }) => {
   const [data, setData] = useState({
     title: "",
     description: "",
@@ -20,19 +20,24 @@ const Add = () => {
       posterUrl: data.posterUrl,
       rating: data.rating,
     };
-    let storedMovies = JSON.parse(localStorage.getItem("movies")) || [];
-    let updatedMovies = [...storedMovies, newMovie];
+    setData(newMovie);
+    handleNewMovie(newMovie);
+    let storedMovies = JSON.parse(localStorage.movies) || [];
+    let updatedMovies = [newMovie];
     setData(updatedMovies);
 
-    localStorage.setItem("movies", JSON.stringify(updatedMovies));
-    Movies.push(newMovie);
-    console.log(event.target.name, event.target.value);
-    console.log(newMovie, "ive updated", Movies);
+    localStorage.setItem("movies", JSON.stringify([...storedMovies, newMovie]));
+    // Movies.push(newMovie);
+    // console.log(event.target.name, event.target.value);
+    // console.log(newMovie, "ive updated", Movies);
   };
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   console.log(data);
+  // useEffect(() => {
+  //   handleNewMovie(data);
+  // }, [data, handleNewMovie]);
 
   return (
     <>
@@ -69,41 +74,41 @@ const Add = () => {
 
 const MovieList = () => {
   let storedMovies = JSON.parse(localStorage.getItem("movies"));
-  const [movies, setMovies] = useState(storedMovies || []);
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    setMovies([...movies, ...Movies, ...JSON.parse(localStorage.movies)]);
+  }, []);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [minRating, setMinRating] = useState(0);
   const handleRating = (data) => setMinRating(data);
   const handleSearchTerm = (data) => setSearchTerm(data);
 
+  const handleNewMovie = (newMovie) => setMovies([...movies, newMovie]);
+
   let filteredMovies = [];
-  let filteredMoviesLoc = [];
-  searchTerm || minRating
-    ? (filteredMoviesLoc = movies.filter((movies) => {
-        return (
-          movies.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-          movies.rating >= minRating
-        );
-      }))
-    : (filteredMoviesLoc = movies);
 
   searchTerm || minRating
-    ? (filteredMovies = Movies.filter((Movie) => {
+    ? (filteredMovies = movies.filter((Movie) => {
         return (
           Movie.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
           Movie.rating >= minRating
         );
       }))
-    : (filteredMovies = Movies);
+    : (filteredMovies = movies);
   if (filteredMovies === []) {
     alert("Nothing to find here ");
   }
-  console.log("filtered", filteredMovies);
+  console.log(movies);
+  // console.log("filtered loc", filteredMoviesLoc);
+
   return (
     <div>
       <Filter minrating={handleRating} searchterm={handleSearchTerm}></Filter>
 
       <br />
       <Add
+        handleNewMovie={handleNewMovie}
         style={{
           display: "flex",
           alignItems: "center",
@@ -136,7 +141,7 @@ const MovieList = () => {
             </Grid>
           )
         )}
-        {filteredMoviesLoc.map(
+        {/* {filteredMoviesLoc.map(
           ({ title, description, posterUrl, rating }, key) => (
             <Grid
               key={key}
@@ -154,7 +159,7 @@ const MovieList = () => {
               ></MediaCard>
             </Grid>
           )
-        )}
+        )} */}
       </Grid>
     </div>
   );
