@@ -1,7 +1,7 @@
 import MediaCard from "./MovieCard";
 import { Movies } from "./data.js";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Filter from "./Filter";
 
 const Add = ({ handleChanges }) => {
@@ -67,8 +67,16 @@ const Add = ({ handleChanges }) => {
 };
 
 const MovieList = () => {
+  const moviesLoc = JSON.stringify(Movies);
+  localStorage.setItem("locMovies", moviesLoc);
   const [movies, setMovies] = useState(Movies || []);
-  const handleChanges = (data) => setMovies([...movies, data]);
+  const handleChanges = (data) => {
+    const currentData = localStorage.getItem("locMovies") || "[]";
+    const currentDataJ = JSON.parse(currentData);
+    const newData = [...Movies, ...currentDataJ, data];
+    localStorage.setItem("locMovies", JSON.stringify(newData));
+    setMovies([...movies, data]);
+  };
 
   const [searchTerm, setSearchTerm] = useState("");
   const [minRating, setMinRating] = useState(0);

@@ -27,7 +27,7 @@ export var Movies = [
   },
 
   {
-    id: 1,
+    id: 4,
     title: "The Shawshank Redemption",
     description:
       "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
@@ -35,7 +35,7 @@ export var Movies = [
     rating: 5,
   },
   {
-    id: 2,
+    id: 5,
     title: "The Godfather",
     description:
       "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
@@ -44,7 +44,7 @@ export var Movies = [
     rating: 5,
   },
   {
-    id: 3,
+    id: 6,
     title: "The Dark Knight",
     description:
       "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
@@ -53,7 +53,7 @@ export var Movies = [
     rating: 5,
   },
   {
-    id: 4,
+    id: 7,
     title: "The Lord of the Rings: The Return of the King",
     description:
       "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
@@ -62,7 +62,7 @@ export var Movies = [
     rating: 4,
   },
   {
-    id: 5,
+    id: 8,
     title: "Pulp Fiction",
     description:
       "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
