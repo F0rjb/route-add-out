@@ -26,6 +26,12 @@ const Add = ({ handleChanges }) => {
     };
     setData([...Movies, newMovie]);
     handleChanges(data);
+    setData({
+      title: "",
+      description: "",
+      posterUrl: "",
+      rating: 0,
+    });
   };
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -41,23 +47,27 @@ const Add = ({ handleChanges }) => {
           type="text"
           name="title"
           placeholder="Your name here"
+          value={data.title}
           onChange={handleChange}
         />
         <input
           type="text"
           name="description"
+          value={data.description}
           placeholder="Your Description here"
           onChange={handleChange}
         />
         <input
           type="number"
           name="rating"
+          value={data.rating}
           placeholder="Your rating here in integers"
           onChange={handleChange}
         />
         <input
           type="text"
           name="posterUrl"
+          value={data.posterUrl}
           placeholder="Your image URL (ends with a .'image extention' here"
           onChange={handleChange}
         />
