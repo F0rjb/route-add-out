@@ -13,6 +13,10 @@ const Add = ({ handleChanges }) => {
   });
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!data.title || !data.description || !data.posterUrl || !data.rating) {
+      alert("All fields are required!");
+      return;
+    }
     const newMovie = {
       id: Movies.length + 1,
       title: data.title,
@@ -20,10 +24,7 @@ const Add = ({ handleChanges }) => {
       posterUrl: data.posterUrl,
       rating: data.rating,
     };
-
-    let storedMovies = JSON.parse(localStorage.getItem("movies")) || [];
-    let updatedMovies = [...storedMovies, newMovie];
-    setData(updatedMovies);
+    setData([...Movies, newMovie]);
     handleChanges(data);
   };
   const handleChange = (e) => {
