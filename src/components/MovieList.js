@@ -3,6 +3,9 @@ import { Movies } from "./data.js";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { useState } from "react";
 import Filter from "./Filter";
+import { Routes, Route, Link } from "react-router-dom";
+import TrailerCard from "./TrailerCard";
+import TrailerDesc from "./TrailerDesc";
 
 const Add = ({ handleChanges }) => {
   const [data, setData] = useState({
@@ -125,25 +128,6 @@ const MovieList = () => {
         alignItems="center"
         sx={{ marginTop: 10 }}
       >
-        {/* {filteredMovies.map(
-          ({ title, description, posterUrl, rating }, key) => (
-            <Grid
-              key={key}
-              direction="row"
-              justifyContent="space-around"
-              alignItems="center"
-              sx={{ marginBottom: 10 }}
-            >
-              <MediaCard
-                key={key}
-                title={title}
-                description={description}
-                posterUrl={posterUrl}
-                rating={Number(rating)}
-              ></MediaCard>
-            </Grid>
-          )
-        )} */}
         {filteredMoviesLoc.map(
           ({ title, description, posterUrl, rating }, key) => (
             <Grid
@@ -153,6 +137,7 @@ const MovieList = () => {
               alignItems="center"
               sx={{ m: 10 }}
             >
+              <Link to={`/description/${key}`}></Link>
               <MediaCard
                 key={key}
                 title={title}
@@ -160,6 +145,11 @@ const MovieList = () => {
                 posterUrl={posterUrl}
                 rating={Number(rating)}
               ></MediaCard>
+              <Routes>
+                <Route path="/"></Route>
+                <Route path={`/description/${key}`} element={<TrailerDesc />} />
+                <Route path={`/trailer/${key}`} element={<TrailerCard />} />
+              </Routes>
             </Grid>
           )
         )}

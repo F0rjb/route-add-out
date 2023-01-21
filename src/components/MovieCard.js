@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
+import { Link } from "react-router-dom";
 
 export default function MediaCard(props) {
   console.log(props.title, props.posterUrl);
@@ -35,8 +36,12 @@ export default function MediaCard(props) {
         </Box>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small">
+          <Link to={`/trailer/${props.id}`}>Trailer</Link>
+        </Button>
+        <Button size="small">
+          <Link to={`/description/${props.id}`}>Description</Link>
+        </Button>
       </CardActions>
     </Card>
   );
