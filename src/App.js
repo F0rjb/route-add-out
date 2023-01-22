@@ -1,14 +1,14 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 import MovieList from "./components/MovieList";
-import { TrailerCard } from "./components/TrailerCard";
-import { TrailerDesc } from "./components/TrailerDesc";
+import TrailerDesc from "./components/TrailerDesc";
+import TrailerCard from "./components/TrailerCard";
 
 const App = () => {
   return (
     <div style={{ marginTop: "40px" }}>
       {" "}
-      <MovieList></MovieList>
+      <MovieList />
     </div>
   );
 };

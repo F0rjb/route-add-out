@@ -137,7 +137,7 @@ const MovieList = () => {
               alignItems="center"
               sx={{ m: 10 }}
             >
-              <Link to={`/description/${key}`}></Link>
+              {/* <Link to={`/description/${key}`}></Link> */}
               <MediaCard
                 key={key}
                 title={title}
@@ -145,15 +145,23 @@ const MovieList = () => {
                 posterUrl={posterUrl}
                 rating={Number(rating)}
               ></MediaCard>
-              <Routes>
-                <Route path="/"></Route>
-                <Route path={`/description/${key}`} element={<TrailerDesc />} />
-                <Route path={`/trailer/${key}`} element={<TrailerCard />} />
-              </Routes>
+              <Link key={key} to={`/description/${key}`}>
+                Description
+              </Link>
+              <Link key={key} to={`/trailer/${key}`}>
+                Trailer
+              </Link>
             </Grid>
           )
         )}
       </Grid>
+      <Routes>
+        <Route path="/movies" element={<MovieList></MovieList>}>
+          {" "}
+        </Route>
+        <Route path="/description/:id" element={<TrailerDesc />} />
+        <Route path="/trailer/:id" element={<TrailerCard />} />
+      </Routes>
     </div>
   );
 };
