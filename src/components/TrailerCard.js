@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Movies } from "./data";
 
 export default function MediaCard() {
@@ -28,8 +28,7 @@ export default function MediaCard() {
             <Typography variant="body2" color="text.secondary"></Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Share</Button>
-            <Button size="small">Learn More</Button>
+            <Link to="/"> Hide </Link>
           </CardActions>
         </Card>
       ))}

@@ -14,10 +14,17 @@ const Add = ({ handleChanges }) => {
     description: "",
     posterUrl: "",
     rating: 0,
+    trailerUrl: "",
   });
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!data.title || !data.description || !data.posterUrl || !data.rating) {
+    if (
+      !data.title ||
+      !data.description ||
+      !data.posterUrl ||
+      !data.rating ||
+      !data.trailerUrl
+    ) {
       alert("All fields are required!");
       return;
     }
@@ -27,6 +34,7 @@ const Add = ({ handleChanges }) => {
       description: data.description,
       posterUrl: data.posterUrl,
       rating: data.rating,
+      trailerUrl: data.trailerUrl,
     };
     setData([...Movies, newMovie]);
     handleChanges(data);
@@ -73,6 +81,13 @@ const Add = ({ handleChanges }) => {
           name="posterUrl"
           value={data.posterUrl}
           placeholder="Your image URL (ends with a .'image extention' here"
+          onChange={handleChange}
+        />{" "}
+        <input
+          type="text"
+          name="trailerUrl"
+          value={data.trailerUrl}
+          placeholder="Your Trailer URL (ends with a .'image extention' here"
           onChange={handleChange}
         />
         <button type="submit">Submit</button>
