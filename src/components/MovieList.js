@@ -43,6 +43,7 @@ const Add = ({ handleChanges }) => {
       description: "",
       posterUrl: "",
       rating: 0,
+      trailerUrl: "",
     });
   };
   const handleChange = (e) => {
@@ -171,7 +172,10 @@ const MovieList = () => {
         )}
       </Grid>
       <Routes>
-        <Route path="/movies" element={<MovieList></MovieList>}>
+        <Route
+          path="/movies"
+          element={<MovieList filteredMoviesLoc></MovieList>}
+        >
           {" "}
         </Route>
 

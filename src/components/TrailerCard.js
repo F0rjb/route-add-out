@@ -23,7 +23,7 @@ export default function MediaCard() {
 
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {description}
+              {description} {id}
             </Typography>
             <Typography variant="body2" color="text.secondary"></Typography>
           </CardContent>
