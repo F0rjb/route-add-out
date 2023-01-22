@@ -48,13 +48,6 @@ export default function MediaCard(props) {
           <Button size="small"></Button>
         </CardActions>
       </Card>{" "}
-      <Routes>
-        <Route path="/movies" element={<MovieList></MovieList>}>
-          {" "}
-        </Route>
-
-        <Route path="/trailer/:id" element={<TrailerCard />} />
-      </Routes>
       {/* <Routes>
         <Route
           path={`/description/${props.id}`}
