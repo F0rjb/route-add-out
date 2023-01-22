@@ -6,6 +6,7 @@ import Filter from "./Filter";
 import { Routes, Route, Link } from "react-router-dom";
 import TrailerCard from "./TrailerCard";
 import TrailerDesc from "./TrailerDesc";
+import { Card } from "@mui/material";
 
 const Add = ({ handleChanges }) => {
   const [data, setData] = useState({
@@ -145,12 +146,11 @@ const MovieList = () => {
                 posterUrl={posterUrl}
                 rating={Number(rating)}
               ></MediaCard>
-              <Link key={key} to={`/description/${key}`}>
-                Description
-              </Link>
-              <Link key={key} to={`/trailer/${key}`}>
-                Trailer
-              </Link>
+              <Card>
+                <Link key={key} to={`/trailer/${key}`}>
+                  Learn More
+                </Link>
+              </Card>
             </Grid>
           )
         )}
@@ -159,7 +159,7 @@ const MovieList = () => {
         <Route path="/movies" element={<MovieList></MovieList>}>
           {" "}
         </Route>
-        <Route path="/description/:id" element={<TrailerDesc />} />
+
         <Route path="/trailer/:id" element={<TrailerCard />} />
       </Routes>
     </div>

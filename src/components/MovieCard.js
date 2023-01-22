@@ -45,13 +45,16 @@ export default function MediaCard(props) {
               Trailer
             </Link>
           </Button>
-          <Button size="small">
-            <Link key={props.key} to={`/description/${props.key}`}>
-              Description
-            </Link>
-          </Button>
+          <Button size="small"></Button>
         </CardActions>
-      </Card>
+      </Card>{" "}
+      <Routes>
+        <Route path="/movies" element={<MovieList></MovieList>}>
+          {" "}
+        </Route>
+
+        <Route path="/trailer/:id" element={<TrailerCard />} />
+      </Routes>
       {/* <Routes>
         <Route
           path={`/description/${props.id}`}
@@ -59,14 +62,6 @@ export default function MediaCard(props) {
         ></Route>{" "}
         <Route path={`/trailer/${props.id}`} element={<TrailerCard />}></Route>
       </Routes> */}
-
-      <Routes>
-        <Route path="/movies" element={<MovieList></MovieList>}>
-          {" "}
-        </Route>
-        <Route path="/description/:id" element={<TrailerDesc />} />
-        <Route path="/trailer/:id" element={<TrailerCard />} />
-      </Routes>
     </div>
   );
 }

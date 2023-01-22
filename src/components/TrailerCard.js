@@ -6,29 +6,33 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useParams } from "react-router-dom";
+import { Movies } from "./data";
 
 export default function MediaCard() {
-  const { id } = useParams();
+  let { id } = useParams();
+  const Filtered = Movies.filter((x) => x.id === Number(id));
+  console.log(Filtered);
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
-        title="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {id}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+    <div>
+      {Filtered.map(({ id, title, description, trailerUrl }, key) => (
+        <Card key={id} sx={{ maxWidth: 345 }}>
+          <iframe
+            src={trailerUrl}
+            title="W3Schools Free Online Web Tutorials"
+          ></iframe>
+
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {description}
+            </Typography>
+            <Typography variant="body2" color="text.secondary"></Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small">Share</Button>
+            <Button size="small">Learn More</Button>
+          </CardActions>
+        </Card>
+      ))}
+    </div>
   );
 }
