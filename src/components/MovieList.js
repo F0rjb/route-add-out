@@ -1,12 +1,12 @@
 import MediaCard from "./MovieCard";
 import { Movies } from "./data.js";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import Filter from "./Filter";
 import { Routes, Route, Link } from "react-router-dom";
 import TrailerCard from "./TrailerCard";
-import TrailerDesc from "./TrailerDesc";
 import { Card } from "@mui/material";
+const MoviesContext = createContext([]);
 
 const Add = ({ handleChanges }) => {
   const [data, setData] = useState({
@@ -124,6 +124,8 @@ const MovieList = () => {
       }))
     : (filteredMoviesLoc = movies);
 
+  const MoviesContext = createContext(movies);
+
   console.log("filtered");
   return (
     <div>
@@ -172,14 +174,17 @@ const MovieList = () => {
         )}
       </Grid>
       <Routes>
-        <Route
-          path="/movies"
-          element={<MovieList filteredMoviesLoc></MovieList>}
-        >
+        <Route path="/"></Route>
+        <Route path="/movies" element={<MovieList></MovieList>}>
           {" "}
         </Route>
 
         <Route path="/trailer/:id" element={<TrailerCard />} />
+        {/* <Route
+          path="/trailer/:id"
+          component={(props) => <TrailerCard {...props} movies={movies} />}
+          element={<TrailerCard />}
+        /> */}
       </Routes>
     </div>
   );

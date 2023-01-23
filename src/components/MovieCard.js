@@ -8,7 +8,6 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import { Link, Route, Routes } from "react-router-dom";
-import TrailerDesc from "./TrailerDesc";
 import TrailerCard from "./TrailerCard";
 import MovieList from "./MovieList";
 
