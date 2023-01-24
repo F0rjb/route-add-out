@@ -11,7 +11,7 @@ const App = () => {
   const first = (data) => {
     setMovies([...movies, data]);
   };
-
+  console.log(movies);
   return (
     <div style={{ marginTop: "40px" }}>
       {" "}

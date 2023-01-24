@@ -36,7 +36,7 @@ const Add = ({ handleChanges }) => {
       trailerUrl: data.trailerUrl,
     };
     setData([...Movies, newMovie]);
-    handleChanges(data);
+    handleChanges(newMovie);
     setData({
       title: "",
       description: "",
