@@ -7,12 +7,9 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import { Link, Route, Routes } from "react-router-dom";
-import TrailerCard from "./TrailerCard";
-import MovieList from "./MovieList";
+import { Link } from "react-router-dom";
 
 export default function MediaCard(props) {
-  // console.log(props);
   return (
     <div>
       <Card sx={{ maxWidth: 345, borderRadius: 7 }}>
@@ -42,17 +39,10 @@ export default function MediaCard(props) {
           <Link to={`/trailer/${props.id}`}>
             <Button size="small">Trailer</Button>
           </Link>
-          {/* */}
+
           <Button size="small"></Button>
         </CardActions>
       </Card>{" "}
-      {/* <Routes>
-        <Route
-          path={`/description/${props.id}`}
-          element={<TrailerDesc />}
-        ></Route>{" "}
-        <Route path={`/trailer/${props.id}`} element={<TrailerCard />}></Route>
-      </Routes> */}
     </div>
   );
 }

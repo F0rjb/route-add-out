@@ -1,11 +1,10 @@
 import MediaCard from "./MovieCard";
 import { Movies } from "./data.js";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import { createContext, useEffect, useState } from "react";
+import { useState } from "react";
 import Filter from "./Filter";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
 
-import { Card, Switch } from "@mui/material";
+import { Card } from "@mui/material";
 
 const Add = ({ handleChanges }) => {
   const [data, setData] = useState({
@@ -36,7 +35,7 @@ const Add = ({ handleChanges }) => {
       trailerUrl: data.trailerUrl,
     };
     setData([...Movies, newMovie]);
-    handleChanges(newMovie);
+    handleChanges(data);
     setData({
       title: "",
       description: "",
@@ -48,9 +47,6 @@ const Add = ({ handleChanges }) => {
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
-  // useEffect(() => {
-  //   handleChanges(data);
-  // }, []);
 
   return (
     <>
@@ -152,7 +148,6 @@ const MovieList = ({ movies, first }) => {
                 alignItems="center"
                 sx={{ m: 10 }}
               >
-                {/* <Link to={`/description/${key}`}></Link> */}
                 <MediaCard
                   key={key}
                   id={id}

@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Movies } from "./components/data";
@@ -9,8 +8,10 @@ const App = () => {
   localStorage.setItem("locMovies", moviesLoc);
   const [movies, setMovies] = useState(Movies || []);
   const first = (data) => {
+    data.id = movies.length + 1;
     setMovies([...movies, data]);
   };
+
   console.log(movies);
   return (
     <div style={{ marginTop: "40px" }}>
