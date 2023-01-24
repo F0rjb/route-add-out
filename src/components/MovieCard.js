@@ -12,7 +12,7 @@ import TrailerCard from "./TrailerCard";
 import MovieList from "./MovieList";
 
 export default function MediaCard(props) {
-  console.log(props.title, props.posterUrl);
+  // console.log(props);
   return (
     <div>
       <Card sx={{ maxWidth: 345, borderRadius: 7 }}>
@@ -39,11 +39,10 @@ export default function MediaCard(props) {
           </Box>
         </CardContent>
         <CardActions>
-          <Button size="small">
-            <Link key={props.key} to={`/trailer/${props.key}`}>
-              Trailer
-            </Link>
-          </Button>
+          <Link to={`/trailer/${props.id}`}>
+            <Button size="small">Trailer</Button>
+          </Link>
+          {/* */}
           <Button size="small"></Button>
         </CardActions>
       </Card>{" "}

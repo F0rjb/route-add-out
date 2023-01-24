@@ -1,12 +1,11 @@
 import MediaCard from "./MovieCard";
 import { Movies } from "./data.js";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import Filter from "./Filter";
-import { Routes, Route, Link } from "react-router-dom";
-import TrailerCard from "./TrailerCard";
-import { Card } from "@mui/material";
-const MoviesContext = createContext([]);
+import { Routes, Route, Link, useLocation } from "react-router-dom";
+
+import { Card, Switch } from "@mui/material";
 
 const Add = ({ handleChanges }) => {
   const [data, setData] = useState({
@@ -97,16 +96,15 @@ const Add = ({ handleChanges }) => {
   );
 };
 
-const MovieList = () => {
-  const moviesLoc = JSON.stringify(Movies);
-  localStorage.setItem("locMovies", moviesLoc);
-  const [movies, setMovies] = useState(Movies || []);
+const MovieList = ({ movies, first }) => {
+  console.log(movies);
+
   const handleChanges = (data) => {
     const currentData = localStorage.getItem("locMovies") || "[]";
     const currentDataJ = JSON.parse(currentData);
     const newData = [...Movies, ...currentDataJ, data];
     localStorage.setItem("locMovies", JSON.stringify(newData));
-    setMovies([...movies, data]);
+    first(data);
   };
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -124,69 +122,52 @@ const MovieList = () => {
       }))
     : (filteredMoviesLoc = movies);
 
-  const MoviesContext = createContext(movies);
-
-  console.log("filtered");
   return (
-    <div>
-      <Filter minrating={handleRating} searchterm={handleSearchTerm}></Filter>
+    <>
+      <div>
+        <Filter minrating={handleRating} searchterm={handleSearchTerm}></Filter>
 
-      <br />
-      <Add
-        handleChanges={handleChanges}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      ></Add>
-      <Grid
-        container
-        direction="row"
-        justifyContent="space-around"
-        alignItems="center"
-        sx={{ marginTop: 10 }}
-      >
-        {filteredMoviesLoc.map(
-          ({ title, description, posterUrl, rating }, key) => (
-            <Grid
-              key={key}
-              direction="row"
-              justifyContent="space-around"
-              alignItems="center"
-              sx={{ m: 10 }}
-            >
-              {/* <Link to={`/description/${key}`}></Link> */}
-              <MediaCard
+        <br />
+        <Add
+          handleChanges={handleChanges}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        ></Add>
+        <Grid
+          container
+          direction="row"
+          justifyContent="space-around"
+          alignItems="center"
+          sx={{ marginTop: 10 }}
+        >
+          {filteredMoviesLoc.map(
+            ({ title, description, posterUrl, rating, id }, key) => (
+              <Grid
                 key={key}
-                title={title}
-                description={description}
-                posterUrl={posterUrl}
-                rating={Number(rating)}
-              ></MediaCard>
-              <Card>
-                <Link key={key} to={`/trailer/${key}`}>
-                  Learn More
-                </Link>
-              </Card>
-            </Grid>
-          )
-        )}
-      </Grid>
-      <Routes>
-        <Route path="/"></Route>
-        <Route path="/movies" element={<MovieList></MovieList>}>
-          {" "}
-        </Route>
-
-        <Route path="/trailer/:id" element={<TrailerCard />} />
-        {/* <Route
-          path="/trailer/:id"
-          component={(props) => <TrailerCard {...props} movies={movies} />}
-          element={<TrailerCard />}
-        /> */}
-      </Routes>
-    </div>
+                direction="row"
+                justifyContent="space-around"
+                alignItems="center"
+                sx={{ m: 10 }}
+              >
+                {/* <Link to={`/description/${key}`}></Link> */}
+                <MediaCard
+                  key={key}
+                  id={id}
+                  title={title}
+                  description={description}
+                  posterUrl={posterUrl}
+                  rating={Number(rating)}
+                ></MediaCard>
+                <Card></Card>
+              </Grid>
+            )
+          )}
+        </Grid>
+      </div>
+    </>
   );
 };
 export default MovieList;

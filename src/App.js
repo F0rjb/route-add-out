@@ -1,11 +1,33 @@
 import React from "react";
+import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { Movies } from "./components/data";
 import MovieList from "./components/MovieList";
-
+import TrailerCard from "./components/TrailerCard";
 const App = () => {
+  const moviesLoc = JSON.stringify(Movies);
+  localStorage.setItem("locMovies", moviesLoc);
+  const [movies, setMovies] = useState(Movies || []);
+  const first = (data) => {
+    setMovies([...movies, data]);
+  };
+
   return (
     <div style={{ marginTop: "40px" }}>
       {" "}
-      <MovieList />
+      <Routes>
+        <Route
+          path="/"
+          element={<MovieList movies={movies} first={first} />}
+        ></Route>
+
+        <Route path="/trailer/:id" element={<TrailerCard movies={movies} />} />
+        {/* <Route
+          path="/trailer/:id"
+          component={(props) => <TrailerCard {...props} movies={movies} />}
+          element={<TrailerCard />}
+        /> */}
+      </Routes>
     </div>
   );
 };
