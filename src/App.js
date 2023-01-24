@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import { Movies } from "./components/data";
 import MovieList from "./components/MovieList";
 import TrailerCard from "./components/TrailerCard";
+import NavBar from "./components/Navbar";
+
 const App = () => {
   const moviesLoc = JSON.stringify(Movies);
   localStorage.setItem("locMovies", moviesLoc);
@@ -12,14 +14,15 @@ const App = () => {
     setMovies([...movies, data]);
   };
 
-  console.log(movies);
   return (
-    <div style={{ marginTop: "40px" }}>
-      {" "}
+    <div>
+      {/* <NavBar></NavBar>{" "} */}
       <Routes>
         <Route
           path="/"
-          element={<MovieList movies={movies} first={first} />}
+          element={
+            <MovieList sx={{ marginTop: 50 }} movies={movies} first={first} />
+          }
         ></Route>
 
         <Route path="/trailer/:id" element={<TrailerCard movies={movies} />} />

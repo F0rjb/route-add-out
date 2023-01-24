@@ -39,7 +39,7 @@ export default function MediaCard({ movies }) {
             <Typography variant="body2" color="text.secondary"></Typography>
           </CardContent>
           <CardActions>
-            <Link to="/"> Hide </Link>
+            <Link to="/movies"> Hide </Link>
           </CardActions>
         </Card>
       ))}

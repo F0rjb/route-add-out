@@ -4,8 +4,6 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { useState } from "react";
 import Filter from "./Filter";
 
-import { Card } from "@mui/material";
-
 const Add = ({ handleChanges }) => {
   const [data, setData] = useState({
     title: "",
@@ -156,7 +154,6 @@ const MovieList = ({ movies, first }) => {
                   posterUrl={posterUrl}
                   rating={Number(rating)}
                 ></MediaCard>
-                <Card></Card>
               </Grid>
             )
           )}
