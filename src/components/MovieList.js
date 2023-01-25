@@ -3,8 +3,9 @@ import { Movies } from "./data.js";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { useState } from "react";
 import Filter from "./Filter";
+import { Link, useNavigate } from "react-router-dom";
 
-const Add = ({ handleChanges }) => {
+export const Add = ({ first, l }) => {
   const [data, setData] = useState({
     title: "",
     description: "",
@@ -12,6 +13,7 @@ const Add = ({ handleChanges }) => {
     rating: 0,
     trailerUrl: "",
   });
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     if (
@@ -24,16 +26,10 @@ const Add = ({ handleChanges }) => {
       alert("All fields are required!");
       return;
     }
-    const newMovie = {
-      id: Movies.length + 1,
-      title: data.title,
-      description: data.description,
-      posterUrl: data.posterUrl,
-      rating: data.rating,
-      trailerUrl: data.trailerUrl,
-    };
-    setData([...Movies, newMovie]);
-    handleChanges(data);
+
+    // setData([...Movies, newMovie]);
+    // handleChanges(data);
+    first({ ...data, id: l + 1 });
     setData({
       title: "",
       description: "",
@@ -41,6 +37,8 @@ const Add = ({ handleChanges }) => {
       rating: 0,
       trailerUrl: "",
     });
+
+    navigate("/");
   };
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -84,7 +82,7 @@ const Add = ({ handleChanges }) => {
           placeholder="Your Trailer URL (ends with a .'image extention' here"
           onChange={handleChange}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Submit</button>{" "}
       </form>
     </>
   );
@@ -122,14 +120,13 @@ const MovieList = ({ movies, first }) => {
         <Filter minrating={handleRating} searchterm={handleSearchTerm}></Filter>
 
         <br />
-        <Add
+        {/* <Add
           handleChanges={handleChanges}
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-          }}
-        ></Add>
+          }} /> */}
         <Grid
           container
           direction="row"
